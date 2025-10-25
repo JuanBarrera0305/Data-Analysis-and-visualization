@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# 🎬 Step 1: Create the movie dataset
+# Step 1: Create the movie dataset
 movies_data = {
     'Movie Title': ['The Dark Knight', 'Inception', 'Titanic', 'Toy Story', 'The Matrix',
                     'Interstellar', 'Parasite', 'Gladiator', 'Pulp Fiction', 'Forrest Gump'],
@@ -14,7 +14,7 @@ movies_data = {
 
 df = pd.DataFrame(movies_data)
 
-# 🎯 Step 2: Bar Chart – Box Office Earnings by Movie
+#  Step 2: Bar Chart – Box Office Earnings by Movie
 plt.figure(figsize=(10, 6))
 plt.bar(df['Movie Title'], df['Box Office Earnings ($M)'], color='skyblue')
 plt.xticks(rotation=45, ha='right')
@@ -25,7 +25,7 @@ plt.tight_layout()
 plt.savefig('barchart.png')
 plt.close()
 
-# 🎯 Step 3: Pie Chart – Genre Distribution
+# Step 3: Pie Chart – Genre Distribution
 genre_counts = df['Genre'].value_counts()
 plt.figure(figsize=(6, 6))
 plt.pie(genre_counts, labels=genre_counts.index, autopct='%1.1f%%', startangle=140)
@@ -34,7 +34,7 @@ plt.tight_layout()
 plt.savefig('piechart.png')
 plt.close()
 
-# 🎯 Step 4: Scatter Plot – IMDb Rating vs Box Office Earnings
+# Step 4: Scatter Plot – IMDb Rating vs Box Office Earnings
 plt.figure(figsize=(8, 6))
 plt.scatter(df['IMDb Rating'], df['Box Office Earnings ($M)'], color='green')
 plt.title('IMDb Rating vs Box Office Earnings')
@@ -45,7 +45,7 @@ plt.tight_layout()
 plt.savefig('scatterplot.png')
 plt.close()
 
-# 🎯 Step 5: Line Chart – Total Box Office Earnings by Year
+# Step 5: Line Chart – Total Box Office Earnings by Year
 yearly_earnings = df.groupby('Release Year')['Box Office Earnings ($M)'].sum()
 plt.figure(figsize=(8, 6))
 plt.plot(yearly_earnings.index, yearly_earnings.values, marker='o', color='purple')
@@ -57,5 +57,5 @@ plt.tight_layout()
 plt.savefig('linegarph.png')
 plt.close()
 
-# 📝 Optional: Save dataset to CSV
+# Optional: Save dataset to CSV
 df.to_csv('movies_dataset.csv', index=False)
