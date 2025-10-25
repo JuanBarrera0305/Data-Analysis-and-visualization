@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Netflix Availability Counter</title>
+</head>
+<body>
+  <h2>Netflix Availability</h2>
+  <pre id="output"></pre>
+
+  <script>
+    const data = `
+TRUE
+TRUE
+TRUE
+FALSE
+FALSE
+TRUE
+TRUE
+TRUE
+TRUE
+TRUE
+TRUE
+FALSE
+FALSE
+TRUE
+TRUE
+TRUE
+TRUE
+TRUE
+TRUE
+FALSE
+FALSE
+TRUE
+TRUE
+FALSE
+TRUE
+FALSE
+FALSE
+TRUE
+TRUE
+TRUE
+TRUE
+TRUE
+FALSE
+FALSE
+FALSE
+TRUE
+TRUE
+FALSE
+TRUE
+FALSE
+FALSE
+FALSE
+TRUE
+TRUE
+TRUE
+TRUE
+FALSE
+FALSE
+FALSE
+TRUE
+TRUE
+TRUE
+FALSE
+FALSE
+TRUE
+TRUE
+FALSE
+TRUE
+FALSE
+TRUE
+TRUE
+FALSE
+FALSE
+TRUE
+TRUE
+TRUE
+FALSE
+FALSE
+FALSE
+TRUE
+FALSE
+TRUE
+FALSE
+FALSE
+FALSE
+TRUE
+FALSE
+FALSE
+FALSE
+FALSE
+FALSE
+FALSE
+FALSE
+TRUE
+FALSE
+TRUE
+FALSE
+TRUE
+FALSE
+FALSE
+TRUE
+FALSE
+TRUE
+FALSE
+FALSE
+TRUE
+TRUE
+FALSE
+TRUE
+`;
+
+    const entries = data.trim().split("\n").map(v => v.trim().toUpperCase());
+
+    const counts = { TRUE: 0, FALSE: 0 };
+    entries.forEach(val => {
+      if (val === "TRUE" || val === "FALSE") {
+        counts[val] = (counts[val] || 0) + 1;
+      }
+    });
+
+    const output = `On Netflix (TRUE): ${counts.TRUE}\nNot on Netflix (FALSE): ${counts.FALSE}`;
+    document.getElementById("output").textContent = output;
+  </script>
+</body>
+</html>

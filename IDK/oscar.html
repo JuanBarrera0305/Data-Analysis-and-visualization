@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Oscar Counter</title>
+</head>
+<body>
+  <h2>Oscar Count Frequency</h2>
+  <pre id="output"></pre>
+
+  <script>
+    const data = `
+Oscar
+4
+0
+9
+0
+4
+4
+1
+1
+1
+3
+6
+2
+0
+1
+0
+4
+4
+0
+1
+0
+0
+4
+1
+1
+1
+1
+1
+2
+1
+1
+4
+0
+1
+1
+0
+1
+1
+0
+0
+0
+0
+0
+0
+2
+0
+3
+1
+1
+0
+2
+3
+1
+0
+3
+4
+0
+0
+0
+0
+3
+0
+0
+2
+0
+7
+2
+6
+0
+0
+0
+0
+1
+0
+1
+0
+7
+0
+0
+0
+1
+0
+0
+0
+0
+0
+12
+0
+1
+0
+12
+1
+0
+0
+3
+7
+0
+0
+0
+`;
+
+    const lines = data.trim().split("\n").slice(1);
+
+    const oscarCounts = {};
+    lines.forEach(num => {
+      const n = parseInt(num.trim(), 10);
+      if (!isNaN(n)) {
+        oscarCounts[n] = (oscarCounts[n] || 0) + 1;
+      }
+    });
+
+    const sorted = Object.entries(oscarCounts).sort((a, b) => b[1] - a[1]);
+
+    const output = sorted.map(([n, count]) => `${n} Oscars: ${count}`).join("\n");
+    document.getElementById("output").textContent = output;
+  </script>
+</body>
+</html>

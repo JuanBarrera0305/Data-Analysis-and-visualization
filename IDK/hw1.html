@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Genre Counter</title>
+</head>
+<body>
+  <h2>Movie Genre Count</h2>
+  <pre id="output"></pre>
+
+  <script>
+    const data = `
+Genre Drama, Thriller Drama, Mystery Drama, Western Drama, Romance Drama Crime, Thriller, Western Romance, Sci-Fi Horror, Thriller Animation, Fantasy Biography, Drama Action, Sci-Fi Drama, War Sci-Fi, Thriller Action, War Drama Action, Romance Romance, Western Romance Crime, Thriller Comedy, Thriller Comedy, Drama Adventure, Comedy Drama Romance, Sci-Fi Crime, Romance Crime, Thriller Comedy, Crime Action, Crime Drama, Mystery, Sci-Fi Comedy, Romance Crime, Thriller Comedy, Romance Drama Kid, Sci-Fi Crime, Drama Action, War Drama, Romance Drama, Romance Comedy, Drama Drama, Romance Comedy, Romance Drama, Psychological Thriller Action, Thriller Comedy, Western Drama, Sport Drama Adventure, Comedy Thriller, War Drama, Romance Adventure, Kid Drama, History Comedy, Thriller Comedy, Mockumentary Adventure, Mystery, Sci-Fi Action, Sci-Fi Comedy, Romance Comedy, Drama Crime, Thriller Comedy, Drama Drama, Independent, Music Action, Thriller Crime, Thriller Comedy, Drama Mystery, Thriller Thriller Crime, Thriller Drama, Thriller Drama, War Sci-Fi, Thriller Horror, Romance Comedy, Crime Drama, Romance Comedy, Kid Drama, Independent Drama, Romance Comedy, Crime Action, Sci-Fi Drama Drama, Fantasy Drama, History Drama, Horror Documentary, History, War Comedy, Drama Drama, Sci-Fi Comedy Drama, Romance Adventure, Fantasy Documentary Adventure, Sci-Fi Comedy, Romance Drama, Independent Action, Adventure Crime, Thriller Action, Thriller Comedy, Romance Action, Sci-Fi Sci-Fi, Thriller Drama, Sci-Fi Crime, Thriller Comedy, Youth
+`;
+
+    const movies = data.trim().split("\n")[0].split(/(?<=\w)\s+(?=[A-Z])/);
+
+    const genreCounts = {};
+
+    movies.forEach(movie => {
+      const genres = movie.replace("Genre ", "").split(",").map(g => g.trim());
+      genres.forEach(genre => {
+        if (genre) {
+          genreCounts[genre] = (genreCounts[genre] || 0) + 1;
+        }
+      });
+    });
+
+    const sorted = Object.entries(genreCounts).sort((a, b) => b[1] - a[1]);
+
+    const output = sorted.map(([genre, count]) => `${genre}: ${count}`).join("\n");
+    document.getElementById("output").textContent = output;
+  </script>
+</body>
+</html>

@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Continents</title>
+</head>  
+<body>
+   <h2>F1 Event Continent Count </h2>
+   <pre id="output"></pre>
+
+   <script>
+    const data = `
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+South America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+South America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+South America
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+South America
+South America
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+South America
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+South America
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Africa
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+South America
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+North America
+North America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+North America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+North America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+North America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+South America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+South America
+South America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+South America
+South America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+South America
+South America
+Africa
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+South America
+Africa
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Asia
+South America
+South America
+Africa
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Asia
+South America
+South America
+Africa
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+South America
+South America
+Africa
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+South America
+South America
+Africa
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+North America
+South America
+South America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Africa
+South America
+North America
+Europe
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+South America
+North America
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Africa
+South America
+Africa
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+South America
+Europe
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Africa
+Oceania
+South America
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Oceania
+South America
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Asia
+Oceania
+South America
+Europe
+Europe
+North America
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Oceania
+South America
+Europe
+Europe
+North America
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Oceania
+North America
+South America
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Oceania
+North America
+South America
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Oceania
+Africa
+North America
+South America
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Oceania
+Africa
+South America
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Oceania
+South America
+Asia
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Oceania
+South America
+South America
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Oceania
+Oceania
+South America
+South America
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Oceania
+South America
+South America
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Europe
+Oceania
+South America
+South America
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Oceania
+South America
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Oceania
+South America
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Asia
+Asia
+Oceania
+Asia
+South America
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Asia
+Oceania
+Asia
+South America
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Asia
+Oceania
+Asia
+South America
+Europe
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+Asia
+Oceania
+Asia
+Asia
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+South America
+Oceania
+Asia
+Asia
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Asia
+Europe
+Europe
+South America
+Asia
+Asia
+Asia
+Asia
+Oceania
+Europe
+Europe
+Europe
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Asia
+Europe
+Asia
+Asia
+South America
+Oceania
+Asia
+Asia
+Europe
+Europe
+North America
+North America
+Europe
+Europe
+Europe
+Europe
+Asia
+Europe
+Europe
+Asia
+Asia
+South America
+Oceania
+Asia
+Asia
+Europe
+Asia
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Asia
+South America
+Oceania
+Asia
+Asia
+Asia
+Europe
+Europe
+Asia
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+South America
+Asia
+Asia
+Oceania
+Asia
+Asia
+Europe
+Europe
+Asia
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Asia
+South America
+Asia
+Oceania
+Asia
+Asia
+Asia
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Asia
+Asia
+Asia
+South America
+Oceania
+Asia
+Asia
+Asia
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Asia
+Asia
+Asia
+North America
+South America
+Oceania
+Asia
+Asia
+Asia
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Asia
+Asia
+Asia
+North America
+South America
+Oceania
+Asia
+Asia
+Asia
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Europe
+North America
+South America
+Asia
+Oceania
+Asia
+Asia
+Asia
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Europe
+North America
+North America
+South America
+Asia
+Oceania
+Asia
+Asia
+Europe
+Europe
+Europe
+North America
+Asia
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Asia
+North America
+North America
+South America
+Asia
+Oceania
+Asia
+Asia
+Europe
+Europe
+Europe
+North America
+Asia
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Asia
+North America
+North America
+South America
+Asia
+Oceania
+Asia
+Asia
+Asia
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Europe
+Asia
+North America
+North America
+South America
+Asia
+Oceania
+Asia
+Asia
+Asia
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Europe
+Asia
+North America
+North America
+South America
+Asia
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Asia
+Asia
+Asia
+Europe
+Europe
+Europe
+Europe
+Asia
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+North America
+North America
+South America
+Asia
+Asia
+Asia
+Asia
+Asia
+Oceania
+Europe
+North America
+Europe
+Europe
+Asia
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+North America
+North America
+South America
+Asia
+Asia
+Asia
+Oceania
+Asia
+North America
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+Asia
+North America
+North America
+South America
+North America
+Asia
+Asia
+Asia
+Oceania
+Asia
+Asia
+North America
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Europe
+Asia
+Asia
+North America
+North America
+South America
+North America
+Asia
+Asia
+Oceania
+Asia
+Asia
+Asia
+Asia
+North America
+Europe
+Europe
+Europe
+North America
+Europe
+Europe
+Europe
+Europe
+`;
+
+const lines = data.trim().split("\n").slice(1);
+
+const continentCounts = {};
+
+lines.forEach(entry => {
+  const continents = entry.split(",").map(c => c.trim());
+  continents.forEach(continent => {
+    if (continent) {
+      continentCounts[continent] = (continentCounts[continent] || 0) + 1;
+    }
+  });
+});
+
+const sorted = Object.entries(continentCounts).sort((a, b) => b[1] - a[1]);
+
+const output = sorted.map(([continent, count]) => `${continent}: ${count}`).join("\n");
+document.getElementById("output").textContent = output;
+</script>
+</body>
+</html>

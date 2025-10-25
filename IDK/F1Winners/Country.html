@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>F1 Event Country Count</title>
+</head>  
+<body>
+  <h2>F1 Event Country Count</h2>
+  <pre id="output"></pre>
+
+  <script>
+    const data = `
+    Great Britain
+Monaco
+United States
+Switzerland
+Belgium
+France
+Italy
+Switzerland
+United States
+Belgium
+France
+France
+Great Britain
+Germany
+Italy
+Spain
+Switzerland
+United States
+Belgium
+France
+Great Britain
+Germany
+Netherlands
+Italy
+Argentina
+United States
+Netherlands
+Belgium
+France
+Great Britain
+Germany
+Switzerland
+Italy
+Argentina
+United States
+Belgium
+France
+Great Britain
+Germany
+Switzerland
+Italy
+Spain
+Argentina
+Monaco
+United States
+Belgium
+Netherlands
+Great Britain
+Italy
+Argentina
+Argentina
+Monaco
+United States
+Belgium
+France
+Great Britain
+Germany
+Italy
+Argentina
+Monaco
+United States
+France
+Great Britain
+Great Britain
+Germany
+Italy
+Italy
+Argentina
+Monaco
+Netherlands
+United States
+Belgium
+France
+Great Britain
+Germany
+Portugal
+Italy
+Morocco
+Monaco
+United States
+Netherlands
+France
+Great Britain
+Germany
+Portugal
+Italy
+United States
+Argentina
+Monaco
+United States
+Netherlands
+Belgium
+France
+Great Britain
+Portugal
+Italy
+United States
+Monaco
+Netherlands
+Belgium
+France
+Great Britain
+Germany
+Italy
+United States
+Netherlands
+Monaco
+Belgium
+France
+Great Britain
+Germany
+Italy
+United States
+South Africa
+Monaco
+Belgium
+Netherlands
+France
+Great Britain
+Germany
+Italy
+United States
+Mexico
+South Africa
+Monaco
+Netherlands
+Belgium
+France
+Great Britain
+Germany
+Austria
+Italy
+United States
+Mexico
+South Africa
+Monaco
+Belgium
+France
+Great Britain
+Netherlands
+Germany
+Italy
+United States
+Mexico
+Monaco
+Belgium
+France
+Great Britain
+Netherlands
+Germany
+Italy
+United States
+Mexico
+South Africa
+Monaco
+Netherlands
+Belgium
+France
+Great Britain
+Germany
+Canada
+Italy
+United States
+Mexico
+South Africa
+Spain
+Monaco
+Belgium
+Netherlands
+France
+Great Britain
+Germany
+Italy
+Canada
+United States
+Mexico
+South Africa
+Spain
+Monaco
+Netherlands
+France
+Great Britain
+Germany
+Italy
+Canada
+United States
+Mexico
+South Africa
+Spain
+Monaco
+Belgium
+Netherlands
+France
+Great Britain
+Germany
+Austria
+Italy
+Canada
+United States
+Mexico
+South Africa
+Spain
+Monaco
+Netherlands
+France
+Great Britain
+Germany
+Austria
+Italy
+Canada
+United States
+Argentina
+South Africa
+Spain
+Monaco
+Belgium
+France
+Great Britain
+Germany
+Austria
+Italy
+Canada
+United States
+Argentina
+Brazil
+South Africa
+Spain
+Belgium
+Monaco
+Sweden
+France
+Great Britain
+Netherlands
+Germany
+Austria
+Italy
+Canada
+United States
+Argentina
+Brazil
+South Africa
+Spain
+Belgium
+Monaco
+Sweden
+Netherlands
+France
+Great Britain
+Germany
+Austria
+Italy
+Canada
+United States
+Argentina
+Brazil
+South Africa
+Spain
+Monaco
+Belgium
+Sweden
+Netherlands
+France
+Great Britain
+Germany
+Austria
+Italy
+United States
+Brazil
+South Africa
+United States
+Spain
+Belgium
+Monaco
+Sweden
+France
+Great Britain
+Germany
+Austria
+Netherlands
+Italy
+Canada
+United States
+Japan
+Argentina
+Brazil
+South Africa
+United States
+Spain
+Monaco
+Belgium
+Sweden
+France
+Great Britain
+Germany
+Austria
+Netherlands
+Italy
+United States
+Canada
+Japan
+Argentina
+Brazil
+South Africa
+United States
+Monaco
+Belgium
+Spain
+Sweden
+France
+Great Britain
+Germany
+Austria
+Netherlands
+Italy
+United States
+Canada
+Argentina
+Brazil
+South Africa
+United States
+Spain
+Belgium
+Monaco
+France
+Great Britain
+Germany
+Austria
+Netherlands
+Italy
+Canada
+United States
+Argentina
+Brazil
+South Africa
+United States
+Belgium
+Monaco
+France
+Great Britain
+Germany
+Austria
+Netherlands
+Italy
+Canada
+United States
+United States
+Brazil
+Argentina
+San Marino
+Belgium
+Monaco
+Spain
+France
+Great Britain
+Germany
+Austria
+Netherlands
+Italy
+Canada
+United States
+South Africa
+Brazil
+United States
+San Marino
+Belgium
+Monaco
+United States
+Canada
+Netherlands
+Great Britain
+France
+Germany
+Austria
+Switzerland
+Italy
+United States
+Brazil
+United States
+France
+San Marino
+Monaco
+Belgium
+United States
+Canada
+Great Britain
+Germany
+Austria
+Netherlands
+Italy
+Great Britain
+South Africa
+Brazil
+South Africa
+Belgium
+San Marino
+France
+Monaco
+Canada
+United States
+United States
+Great Britain
+Germany
+Austria
+Netherlands
+Italy
+Germany
+Portugal
+Brazil
+Portugal
+San Marino
+Monaco
+Canada
+United States
+France
+Great Britain
+Germany
+Austria
+Netherlands
+Italy
+Belgium
+Great Britain
+South Africa
+Australia
+Brazil
+Spain
+San Marino
+Monaco
+Belgium
+Canada
+United States
+France
+Great Britain
+Germany
+Hungary
+Austria
+Italy
+Portugal
+Mexico
+Australia
+Brazil
+San Marino
+Belgium
+Monaco
+United States
+France
+Great Britain
+Germany
+Hungary
+Austria
+Italy
+Portugal
+Spain
+Mexico
+Japan
+Australia
+Brazil
+San Marino
+Monaco
+Mexico
+Canada
+United States
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Portugal
+Spain
+Japan
+Australia
+Brazil
+San Marino
+Monaco
+Mexico
+United States
+Canada
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Portugal
+Spain
+Japan
+Australia
+United States
+Brazil
+San Marino
+Monaco
+Canada
+Mexico
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Portugal
+Spain
+Japan
+Australia
+United States
+Brazil
+San Marino
+Monaco
+Canada
+Mexico
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Portugal
+Spain
+Japan
+Australia
+South Africa
+Mexico
+Brazil
+Spain
+San Marino
+Monaco
+Canada
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Portugal
+Japan
+Australia
+South Africa
+Brazil
+Great Britain
+San Marino
+Spain
+Monaco
+Canada
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Portugal
+Japan
+Australia
+Brazil
+Japan
+San Marino
+Monaco
+Spain
+Canada
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Portugal
+Spain
+Japan
+Australia
+Brazil
+Argentina
+San Marino
+Spain
+Monaco
+Canada
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Portugal
+Germany
+Japan
+Japan
+Australia
+Australia
+Brazil
+Argentina
+Germany
+San Marino
+Monaco
+Spain
+Canada
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Portugal
+Japan
+Australia
+Brazil
+Argentina
+San Marino
+Monaco
+Spain
+Canada
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Austria
+Germany
+Japan
+Spain
+Australia
+Brazil
+Argentina
+San Marino
+Spain
+Monaco
+Canada
+France
+Great Britain
+Austria
+Germany
+Hungary
+Belgium
+Italy
+Germany
+Japan
+Australia
+Brazil
+San Marino
+Monaco
+Spain
+Canada
+France
+Great Britain
+Austria
+Germany
+Hungary
+Belgium
+Italy
+Germany
+Malaysia
+Japan
+Australia
+Brazil
+San Marino
+Great Britain
+Spain
+Germany
+Monaco
+Canada
+France
+Austria
+Germany
+Hungary
+Belgium
+Italy
+United States
+Japan
+Malaysia
+Australia
+Malaysia
+Brazil
+San Marino
+Spain
+Austria
+Monaco
+Canada
+Germany
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+United States
+Japan
+Australia
+Malaysia
+Brazil
+San Marino
+Spain
+Austria
+Monaco
+Canada
+Germany
+Great Britain
+France
+Germany
+Hungary
+Belgium
+Italy
+United States
+Japan
+Australia
+Malaysia
+Brazil
+San Marino
+Spain
+Austria
+Monaco
+Canada
+Germany
+France
+Great Britain
+Germany
+Hungary
+Italy
+United States
+Japan
+Australia
+Malaysia
+Sakhir
+San Marino
+Spain
+Monaco
+Germany
+Canada
+United States
+France
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+China
+Japan
+Brazil
+Australia
+Malaysia
+Sakhir
+San Marino
+Spain
+Monaco
+Germany
+Canada
+United States
+France
+Great Britain
+Germany
+Hungary
+Turkiye
+Italy
+Belgium
+Brazil
+Japan
+China
+Sakhir
+Malaysia
+Australia
+San Marino
+Germany
+Spain
+Monaco
+Great Britain
+Canada
+United States
+France
+Germany
+Hungary
+Turkiye
+Italy
+China
+Japan
+Brazil
+Australia
+Malaysia
+Sakhir
+Spain
+Monaco
+Canada
+United States
+France
+Great Britain
+Germany
+Hungary
+Turkiye
+Italy
+Belgium
+Japan
+China
+Brazil
+Australia
+Malaysia
+Sakhir
+Spain
+Turkiye
+Monaco
+Canada
+France
+Great Britain
+Germany
+Hungary
+Spain
+Belgium
+Italy
+Singapore
+Japan
+China
+Brazil
+Australia
+Malaysia
+China
+Sakhir
+Spain
+Monaco
+Turkiye
+Great Britain
+Germany
+Hungary
+Spain
+Belgium
+Italy
+Singapore
+Japan
+Brazil
+Abu Dhabi
+Sakhir
+Australia
+Malaysia
+China
+Spain
+Monaco
+Turkiye
+Canada
+Spain
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Singapore
+Japan
+South Korea
+Brazil
+Abu Dhabi
+Australia
+Malaysia
+China
+Turkiye
+Spain
+Monaco
+Canada
+Spain
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Singapore
+Japan
+South Korea
+India
+Abu Dhabi
+Brazil
+Australia
+Malaysia
+China
+Sakhir
+Spain
+Monaco
+Canada
+Spain
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Singapore
+Japan
+South Korea
+India
+Abu Dhabi
+United States
+Brazil
+Australia
+Malaysia
+China
+Sakhir
+Spain
+Monaco
+Canada
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Singapore
+South Korea
+Japan
+India
+Abu Dhabi
+United States
+Brazil
+Australia
+Malaysia
+Sakhir
+China
+Spain
+Monaco
+Canada
+Austria
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Singapore
+Japan
+Russia
+United States
+Brazil
+Abu Dhabi
+Australia
+Malaysia
+China
+Sakhir
+Spain
+Monaco
+Canada
+Austria
+Great Britain
+Hungary
+Belgium
+Italy
+Singapore
+Japan
+Russia
+United States
+Mexico
+Brazil
+Abu Dhabi
+Australia
+Sakhir
+China
+Russia
+Spain
+Monaco
+Canada
+Azerbaijan
+Austria
+Great Britain
+Hungary
+Germany
+Belgium
+Italy
+Singapore
+Malaysia
+Japan
+United States
+Mexico
+Brazil
+Abu Dhabi
+Australia
+China
+Sakhir
+Russia
+Spain
+Monaco
+Canada
+Azerbaijan
+Austria
+Great Britain
+Hungary
+Belgium
+Italy
+Singapore
+Malaysia
+Japan
+United States
+Mexico
+Brazil
+Abu Dhabi
+Australia
+Sakhir
+China
+Azerbaijan
+Spain
+Monaco
+Canada
+France
+Austria
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Singapore
+Russia
+Japan
+United States
+Mexico
+Brazil
+Abu Dhabi
+Australia
+Sakhir
+China
+Azerbaijan
+Spain
+Monaco
+Canada
+France
+Austria
+Great Britain
+Germany
+Hungary
+Belgium
+Italy
+Singapore
+Russia
+Japan
+Mexico
+United States
+Brazil
+Abu Dhabi
+Austria
+Styria
+Hungary
+Great Britain
+Great Britain
+Spain
+Belgium
+Italy
+Italy
+Russia
+Germany
+Portugal
+Italy
+Turkiye
+Sakhir
+Sakhir
+Abu Dhabi
+Sakhir
+Italy
+Portugal
+Spain
+Monaco
+Azerbaijan
+France
+Styria
+Austria
+Great Britain
+Hungary
+Belgium
+Netherlands
+Italy
+Russia
+Turkiye
+United States
+Mexico
+Brazil
+Qatar
+Saudi Arabia
+Abu Dhabi
+Sakhir
+Saudi Arabia
+Australia
+Italy
+United States
+Spain
+Monaco
+Azerbaijan
+Canada
+Great Britain
+Austria
+France
+Hungary
+Belgium
+Netherlands
+Italy
+Singapore
+Japan
+United States
+Mexico
+Brazil
+Abu Dhabi
+Sakhir
+Saudi Arabia
+Australia
+Azerbaijan
+United States
+Monaco
+Spain
+Canada
+Austria
+Great Britain
+Hungary
+Belgium
+Netherlands
+Italy
+Singapore
+Japan
+Qatar
+United States
+Mexico
+Brazil
+United States
+Abu Dhabi
+Sakhir
+Saudi Arabia
+Australia
+Japan
+China
+United States
+Italy
+Monaco
+Canada
+Spain
+Austria
+Great Britain
+Hungary
+Belgium
+Netherlands
+Italy
+Azerbaijan
+Singapore
+United States
+Mexico
+Brazil
+United States
+Qatar
+Abu Dhabi
+Australia
+China
+Japan
+Sakhir
+Saudi Arabia
+United States
+Italy
+Monaco
+Spain
+Canada
+Austria
+Great Britain
+Belgium
+Hungary
+`;
+
+    const lines = data.trim().split("\n");
+
+    const countryCounts = {};
+
+    lines.forEach(country => {
+      country = country.trim();
+      if (country) {
+        countryCounts[country] = (countryCounts[country] || 0) + 1;
+      }
+    });
+
+    // Sort countries by most frequent first
+    const sorted = Object.entries(countryCounts).sort((a, b) => b[1] - a[1]);
+
+    const output = sorted.map(([country, count]) => `${country}: ${count}`).join("\n");
+    document.getElementById("output").textContent = output;
+  </script>
+</body>
+</html>

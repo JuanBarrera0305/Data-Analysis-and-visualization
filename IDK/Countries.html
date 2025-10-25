@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Country Counter</title>
+</head>
+<body>
+  <h2>Movie Country Count</h2>
+  <pre id="output"></pre>
+
+  <script>
+    const data = `
+Country
+South Korea
+United States
+United States
+Hong Kong
+United States
+United States
+United States
+United States
+Japan
+United States
+Australia
+Polland, United Kingdom, United States
+Japan, United Kingdom, United States
+Germany, United States
+Brazil, France, Germany, United States
+China, Hong Kong, Taiwan, United States
+United States
+Mexico
+United States
+United States
+United States
+Germany, United States
+United States
+United States
+United States
+France
+United States
+United Kingdom, United States
+United States
+Japan, United States
+Hong Kong, United States
+United States
+Iran
+United States
+France, Italy
+United States
+Brazil, France, Italy, United States
+France
+United States
+Japan, Taiwan
+France, Germany
+United States
+South Korea
+China, United Kingdom, United States
+United States
+Mexico, United States
+United States
+Germany
+France, United States
+United States
+Luxembourg, United Kingdom, United States
+Ireland, United Kingdom, United States
+United Kingdom, United States
+Mexico, Spain
+United Kingdom, United States
+United States
+United States
+United States
+Austria, Germany
+United States
+United States
+United States
+United States
+United States
+United Kingdom, United States
+United States
+United Kingdom
+United States
+Switzerland, United Kingdom, United States
+Sweden
+United States
+United Kingdom, United States
+United States
+United States
+Austria, France, Germany
+France, United Kingdom, United States
+United States
+United Kingdom, United States
+United States
+United States
+United States
+Denmark, Indonesia, Norway, United Kingdom
+France, United Kingdom, United States
+Denmark, France, Germany, Sweden
+United States
+South Korea, United States
+New Zealand, United States
+France
+United Kingdom, United States
+United States
+United Kingdom
+United Kingdom, United States
+United States
+United States
+Denmark, France, Norway, Sweden
+United States
+United Kingdom, United States
+United States
+South Korea
+United States
+`;
+
+    const lines = data.trim().split("\n").slice(1);
+
+    const countryCounts = {};
+
+    lines.forEach(entry => {
+      const countries = entry.split(",").map(c => c.trim());
+      countries.forEach(country => {
+        if (country) {
+          countryCounts[country] = (countryCounts[country] || 0) + 1;
+        }
+      });
+    });
+
+    const sorted = Object.entries(countryCounts).sort((a, b) => b[1] - a[1]);
+
+    const output = sorted.map(([country, count]) => `${country}: ${count}`).join("\n");
+    document.getElementById("output").textContent = output;
+  </script>
+</body>
+</html>

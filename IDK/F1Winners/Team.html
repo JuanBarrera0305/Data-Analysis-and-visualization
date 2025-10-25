@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>F1 Team Win Counter</title>
+</head>
+<body>
+  <h2>F1 Team Count</h2>
+  <pre id="output"></pre>
+
+  <script>
+    const data = `
+Team
+Alfa Romeo
+Alfa Romeo
+Kurtis Kraft Offenhauser
+Alfa Romeo
+Alfa Romeo
+Alfa Romeo
+Alfa Romeo
+Alfa Romeo
+Kurtis Kraft Offenhauser
+Alfa Romeo
+Alfa Romeo
+Alfa Romeo
+Ferrari
+Ferrari
+Ferrari
+Alfa Romeo
+Ferrari
+Kuzma Offenhauser
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Kurtis Kraft Offenhauser
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Maserati
+Maserati
+Kurtis Kraft Offenhauser
+Maserati
+Mercedes-Benz
+Ferrari
+Mercedes-Benz
+Mercedes-Benz
+Mercedes-Benz
+Ferrari
+Mercedes-Benz
+Ferrari
+Kurtis Kraft Offenhauser
+Mercedes-Benz
+Mercedes-Benz
+Mercedes-Benz
+Mercedes-Benz
+Ferrari
+Ferrari
+Maserati
+Watson Offenhauser
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Maserati
+Maserati
+Maserati
+Epperly Offenhauser
+Maserati
+Vanwall
+Vanwall
+Maserati
+Vanwall
+Vanwall
+Cooper Climax
+Cooper Climax
+Vanwall
+Epperly Offenhauser
+Vanwall
+Ferrari
+Ferrari
+Vanwall
+Vanwall
+Vanwall
+Vanwall
+Cooper Climax
+Watson Offenhauser
+BRM
+Ferrari
+Cooper Climax
+Ferrari
+Cooper Climax
+Cooper Climax
+Cooper Climax
+Cooper Climax
+Lotus Climax
+Watson Offenhauser
+Cooper Climax
+Cooper Climax
+Cooper Climax
+Cooper Climax
+Cooper Climax
+Ferrari
+Lotus Climax
+Lotus Climax
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Lotus Climax
+Ferrari
+Lotus Climax
+BRM
+Cooper Climax
+Lotus Climax
+Porsche
+Lotus Climax
+BRM
+BRM
+Lotus Climax
+BRM
+BRM
+Lotus Climax
+Lotus Climax
+Lotus Climax
+Lotus Climax
+Ferrari
+Lotus Climax
+BRM
+Lotus Climax
+Lotus Climax
+BRM
+Lotus Climax
+Lotus Climax
+Brabham Climax
+Lotus Climax
+Ferrari
+Ferrari
+Ferrari
+BRM
+Brabham Climax
+Lotus Climax
+BRM
+Lotus Climax
+Lotus Climax
+Lotus Climax
+Lotus Climax
+Lotus Climax
+BRM
+BRM
+Honda
+BRM
+Ferrari
+Brabham Repco
+Brabham Repco
+Brabham Repco
+Brabham Repco
+Ferrari
+Lotus BRM
+Cooper Maserati
+Cooper Maserati
+Brabham Repco
+Lotus Ford
+Eagle Weslake
+Brabham Repco
+Lotus Ford
+Brabham Repco
+Brabham Repco
+Honda
+Lotus Ford
+Lotus Ford
+Lotus Ford
+Lotus Ford
+Lotus Ford
+McLaren Ford
+Matra Ford
+Ferrari
+Lotus Ford
+Matra Ford
+McLaren Ford
+McLaren Ford
+Matra Ford
+Lotus Ford
+Matra Ford
+Matra Ford
+Lotus Ford
+Matra Ford
+Matra Ford
+Matra Ford
+Brabham Ford
+Matra Ford
+Brabham Ford
+Lotus Ford
+McLaren Ford
+Brabham Ford
+March Ford
+Lotus Ford
+BRM
+Lotus Ford
+Lotus Ford
+Lotus Ford
+Lotus Ford
+Ferrari
+Ferrari
+Ferrari
+Lotus Ford
+Ferrari
+Ferrari
+Tyrrell Ford
+Tyrrell Ford
+Ferrari
+Tyrrell Ford
+Tyrrell Ford
+Tyrrell Ford
+BRM
+BRM
+Tyrrell Ford
+Tyrrell Ford
+Tyrrell Ford
+McLaren Ford
+Lotus Ford
+BRM
+Lotus Ford
+Tyrrell Ford
+Lotus Ford
+Ferrari
+Lotus Ford
+Lotus Ford
+Tyrrell Ford
+Tyrrell Ford
+Lotus Ford
+Lotus Ford
+Tyrrell Ford
+Lotus Ford
+Tyrrell Ford
+Tyrrell Ford
+McLaren Ford
+Lotus Ford
+McLaren Ford
+Tyrrell Ford
+Tyrrell Ford
+Lotus Ford
+Lotus Ford
+McLaren Ford
+Lotus Ford
+McLaren Ford
+McLaren Ford
+Brabham Ford
+Ferrari
+McLaren Ford
+Lotus Ford
+Tyrrell Ford
+Ferrari
+Lotus Ford
+Tyrrell Ford
+Ferrari
+Brabham Ford
+Lotus Ford
+McLaren Ford
+Brabham Ford
+McLaren Ford
+Brabham Ford
+Tyrrell Ford
+McLaren Ford
+Ferrari
+Ferrari
+Ferrari
+Hesketh Ford
+Ferrari
+McLaren Ford
+Brabham Ford
+March Ford
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+McLaren Ford
+Ferrari
+Ferrari
+Tyrrell Ford
+McLaren Ford
+Ferrari
+McLaren Ford
+Penske Ford
+McLaren Ford
+March Ford
+McLaren Ford
+McLaren Ford
+Lotus Ford
+Wolf Ford
+Ferrari
+Ferrari
+Lotus Ford
+Lotus Ford
+Wolf Ford
+Lotus Ford
+Ligier Matra
+Lotus Ford
+McLaren Ford
+Ferrari
+Shadow Ford
+Ferrari
+Lotus Ford
+McLaren Ford
+Wolf Ford
+McLaren Ford
+Lotus Ford
+Ferrari
+Lotus Ford
+Ferrari
+Tyrrell Ford
+Lotus Ford
+Lotus Ford
+Brabham Alfa Romeo
+Lotus Ford
+Ferrari
+Lotus Ford
+Lotus Ford
+Lotus Ford
+Brabham Alfa Romeo
+Ferrari
+Ferrari
+Ligier Ford
+Ligier Ford
+Ferrari
+Ferrari
+Ligier Ford
+Ferrari
+Ferrari
+Renault
+Williams Ford
+Williams Ford
+Williams Ford
+Williams Ford
+Ferrari
+Williams Ford
+Ferrari
+Williams Ford
+Renault
+Renault
+Brabham Ford
+Ligier Ford
+Williams Ford
+Williams Ford
+Williams Ford
+Ligier Ford
+Renault
+Brabham Ford
+Brabham Ford
+Williams Ford
+Williams Ford
+Williams Ford
+Williams Ford
+Brabham Ford
+Brabham Ford
+Williams Ford
+Ferrari
+Ferrari
+Renault
+McLaren Ford
+Brabham Ford
+Ligier Matra
+Renault
+Renault
+Ligier Matra
+Williams Ford
+Renault
+Renault
+McLaren Ford
+Ferrari
+McLaren Ford
+Brabham Ford
+McLaren Ford
+Brabham BMW
+Ferrari
+McLaren Ford
+Renault
+Ferrari
+Lotus Ford
+Williams Ford
+Renault
+Tyrrell Ford
+Brabham BMW
+McLaren Ford
+Renault
+Ferrari
+Williams Ford
+Renault
+Tyrrell Ford
+Ferrari
+Renault
+Ferrari
+Renault
+Ferrari
+Brabham BMW
+Brabham BMW
+Brabham BMW
+McLaren TAG
+McLaren TAG
+Ferrari
+McLaren TAG
+McLaren TAG
+McLaren TAG
+Brabham BMW
+Brabham BMW
+Williams Honda
+McLaren TAG
+McLaren TAG
+McLaren TAG
+McLaren TAG
+McLaren TAG
+McLaren TAG
+McLaren TAG
+McLaren TAG
+Lotus Renault
+Lotus Renault
+McLaren TAG
+Ferrari
+Williams Honda
+Brabham BMW
+McLaren TAG
+Ferrari
+McLaren TAG
+McLaren TAG
+McLaren TAG
+Lotus Renault
+Williams Honda
+Williams Honda
+Williams Honda
+Williams Honda
+Lotus Renault
+McLaren TAG
+McLaren TAG
+Williams Honda
+Williams Honda
+Lotus Renault
+Williams Honda
+Williams Honda
+Williams Honda
+Williams Honda
+McLaren TAG
+Williams Honda
+Williams Honda
+Benetton BMW
+McLaren TAG
+McLaren TAG
+Williams Honda
+McLaren TAG
+Lotus Honda
+Lotus Honda
+Williams Honda
+Williams Honda
+Williams Honda
+Williams Honda
+Williams Honda
+Williams Honda
+McLaren TAG
+Williams Honda
+Williams Honda
+Ferrari
+Ferrari
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+Ferrari
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+Ferrari
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+Williams Renault
+McLaren Honda
+McLaren Honda
+McLaren Honda
+Ferrari
+McLaren Honda
+McLaren Honda
+Ferrari
+McLaren Honda
+Benetton Ford
+Williams Renault
+McLaren Honda
+Ferrari
+Williams Renault
+McLaren Honda
+McLaren Honda
+Ferrari
+Ferrari
+Ferrari
+McLaren Honda
+Williams Renault
+McLaren Honda
+McLaren Honda
+Ferrari
+Ferrari
+Benetton Ford
+Benetton Ford
+McLaren Honda
+McLaren Honda
+McLaren Honda
+McLaren Honda
+Benetton Ford
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+McLaren Honda
+McLaren Honda
+Williams Renault
+Williams Renault
+Williams Renault
+McLaren Honda
+McLaren Honda
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+McLaren Honda
+McLaren Honda
+Williams Renault
+Williams Renault
+Williams Renault
+McLaren Honda
+Benetton Ford
+McLaren Honda
+Williams Renault
+Williams Renault
+McLaren Honda
+Williams Renault
+McLaren Ford
+McLaren Ford
+Williams Renault
+Williams Renault
+McLaren Ford
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Benetton Ford
+McLaren Ford
+McLaren Ford
+Benetton Ford
+Benetton Ford
+Benetton Ford
+Benetton Ford
+Williams Renault
+Benetton Ford
+Benetton Ford
+Williams Renault
+Ferrari
+Benetton Ford
+Williams Renault
+Williams Renault
+Williams Renault
+Benetton Ford
+Williams Renault
+Williams Renault
+Benetton Renault
+Williams Renault
+Williams Renault
+Benetton Renault
+Benetton Renault
+Ferrari
+Benetton Renault
+Benetton Renault
+Benetton Renault
+Williams Renault
+Benetton Renault
+Benetton Renault
+Williams Renault
+Benetton Renault
+Benetton Renault
+Benetton Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Ligier Mugen Honda
+Ferrari
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Williams Renault
+Ferrari
+Ferrari
+Williams Renault
+Williams Renault
+McLaren Mercedes
+Williams Renault
+Williams Renault
+Williams Renault
+Ferrari
+Williams Renault
+Ferrari
+Ferrari
+Williams Renault
+Benetton Renault
+Williams Renault
+Ferrari
+McLaren Mercedes
+Williams Renault
+Williams Renault
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+Ferrari
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+Jordan Mugen Honda
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+McLaren Mercedes
+Ferrari
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Jordan Mugen Honda
+McLaren Mercedes
+Ferrari
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Jordan Mugen Honda
+Stewart Ford
+Ferrari
+McLaren Mercedes
+Ferrari
+Ferrari
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+McLaren Mercedes
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+McLaren Mercedes
+Williams BMW
+Ferrari
+McLaren Mercedes
+Ferrari
+Williams BMW
+Ferrari
+Ferrari
+McLaren Mercedes
+Williams BMW
+Ferrari
+Ferrari
+Williams BMW
+McLaren Mercedes
+Ferrari
+Ferrari
+Williams BMW
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+McLaren Mercedes
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Jordan Ford
+Ferrari
+Ferrari
+Ferrari
+Williams BMW
+Ferrari
+Williams BMW
+Williams BMW
+Ferrari
+Williams BMW
+Renault
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Renault
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+McLaren Mercedes
+Ferrari
+Ferrari
+Ferrari
+Williams BMW
+Renault
+Renault
+Renault
+Renault
+McLaren Mercedes
+McLaren Mercedes
+Renault
+McLaren Mercedes
+Ferrari
+Renault
+McLaren Mercedes
+Renault
+McLaren Mercedes
+McLaren Mercedes
+McLaren Mercedes
+McLaren Mercedes
+McLaren Mercedes
+McLaren Mercedes
+Renault
+Renault
+Renault
+Renault
+Ferrari
+Ferrari
+Renault
+Renault
+Renault
+Renault
+Ferrari
+Ferrari
+Ferrari
+Honda
+Ferrari
+Ferrari
+Ferrari
+Renault
+Ferrari
+Ferrari
+McLaren Mercedes
+Ferrari
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+McLaren Mercedes
+Ferrari
+McLaren Mercedes
+Ferrari
+Ferrari
+McLaren Mercedes
+Ferrari
+Ferrari
+Ferrari
+Ferrari
+McLaren Mercedes
+Sauber BMW
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+Ferrari
+STR Ferrari
+Renault
+Renault
+McLaren Mercedes
+Ferrari
+Brawn Mercedes
+Brawn Mercedes
+RBR Renault
+Brawn Mercedes
+Brawn Mercedes
+Brawn Mercedes
+Brawn Mercedes
+RBR Renault
+RBR Renault
+McLaren Mercedes
+Brawn Mercedes
+Ferrari
+Brawn Mercedes
+McLaren Mercedes
+RBR Renault
+RBR Renault
+RBR Renault
+Ferrari
+McLaren Mercedes
+RBR Renault
+McLaren Mercedes
+RBR Renault
+RBR Renault
+McLaren Mercedes
+McLaren Mercedes
+RBR Renault
+RBR Renault
+Ferrari
+RBR Renault
+McLaren Mercedes
+Ferrari
+Ferrari
+RBR Renault
+Ferrari
+RBR Renault
+RBR Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+McLaren Mercedes
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+McLaren Mercedes
+Red Bull Racing Renault
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+McLaren Mercedes
+Red Bull Racing Renault
+Red Bull Racing Renault
+McLaren Mercedes
+Red Bull Racing Renault
+McLaren Mercedes
+Ferrari
+Mercedes
+Red Bull Racing Renault
+Williams Renault
+Red Bull Racing Renault
+McLaren Mercedes
+Ferrari
+Red Bull Racing Renault
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+McLaren Mercedes
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+Lotus Renault
+McLaren Mercedes
+McLaren Mercedes
+Lotus Renault
+Red Bull Racing Renault
+Ferrari
+Red Bull Racing Renault
+Ferrari
+Mercedes
+Red Bull Racing Renault
+Mercedes
+Red Bull Racing Renault
+Mercedes
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+Red Bull Racing Renault
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Red Bull Racing Renault
+Mercedes
+Mercedes
+Mercedes
+Red Bull Racing Renault
+Red Bull Racing Renault
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Ferrari
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Ferrari
+Mercedes
+Mercedes
+Ferrari
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Red Bull Racing TAG Heuer
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Red Bull Racing TAG Heuer
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Ferrari
+Mercedes
+Ferrari
+Mercedes
+Mercedes
+Ferrari
+Mercedes
+Red Bull Racing TAG Heuer
+Mercedes
+Mercedes
+Ferrari
+Mercedes
+Mercedes
+Mercedes
+Red Bull Racing TAG Heuer
+Mercedes
+Mercedes
+Red Bull Racing TAG Heuer
+Ferrari
+Mercedes
+Ferrari
+Ferrari
+Red Bull Racing TAG Heuer
+Mercedes
+Mercedes
+Red Bull Racing TAG Heuer
+Ferrari
+Mercedes
+Red Bull Racing TAG Heuer
+Ferrari
+Mercedes
+Mercedes
+Ferrari
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Ferrari
+Red Bull Racing TAG Heuer
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Red Bull Racing Honda
+Mercedes
+Red Bull Racing Honda
+Mercedes
+Ferrari
+Ferrari
+Ferrari
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Red Bull Racing Honda
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Red Bull Racing Honda
+Mercedes
+Mercedes
+AlphaTauri Honda
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Mercedes
+Racing Point BWT Mercedes
+Red Bull Racing Honda
+Mercedes
+Red Bull Racing Honda
+Mercedes
+Mercedes
+Red Bull Racing Honda
+Red Bull Racing Honda
+Red Bull Racing Honda
+Red Bull Racing Honda
+Red Bull Racing Honda
+Mercedes
+Alpine Renault
+Red Bull Racing Honda
+Red Bull Racing Honda
+McLaren Mercedes
+Mercedes
+Mercedes
+Red Bull Racing Honda
+Red Bull Racing Honda
+Mercedes
+Mercedes
+Mercedes
+Red Bull Racing Honda
+Ferrari
+Red Bull Racing RBPT
+Ferrari
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Ferrari
+Ferrari
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Red Bull Racing RBPT
+Mercedes
+Red Bull Racing RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Ferrari
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Ferrari
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+McLaren Mercedes
+Red Bull Racing Honda RBPT
+Ferrari
+Red Bull Racing Honda RBPT
+Red Bull Racing Honda RBPT
+Mercedes
+Mercedes
+McLaren Mercedes
+Mercedes
+McLaren Mercedes
+Ferrari
+McLaren Mercedes
+McLaren Mercedes
+Ferrari
+Ferrari
+Red Bull Racing Honda RBPT
+Mercedes
+Red Bull Racing Honda RBPT
+McLaren Mercedes
+McLaren
+McLaren
+Red Bull Racing
+McLaren
+McLaren
+McLaren
+Red Bull Racing
+McLaren
+McLaren
+Mercedes
+McLaren
+McLaren
+McLaren
+McLaren
+`;
+
+    // Split by line, remove the header row
+    const lines = data.trim().split("\n").slice(1);
+
+    const teamCounts = {};
+
+    lines.forEach(team => {
+      team = team.trim();
+      if (team) {
+        teamCounts[team] = (teamCounts[team] || 0) + 1;
+      }
+    });
+
+    // Sort results by number of wins (highest first)
+    const sorted = Object.entries(teamCounts).sort((a, b) => b[1] - a[1]);
+
+    const output = sorted.map(([team, count]) => `${team}: ${count}`).join("\n");
+    document.getElementById("output").textContent = output;
+  </script>
+</body>
+</html>
