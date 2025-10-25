@@ -2,13 +2,27 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # ================================
-# STEP 1: Load the Dataset
+# STEP 1: Create the Movie Dataset
 # ================================
-file_path = "movies_dataset.csv"  # <-- Your CSV file
-df = pd.read_csv(file_path)
+movies_data = {
+    'Movie Title': ['The Dark Knight', 'Inception', 'Titanic', 'Toy Story', 'The Matrix',
+                    'Interstellar', 'Parasite', 'Gladiator', 'Pulp Fiction', 'Forrest Gump'],
+    'Genre': ['Action', 'Sci-Fi', 'Romance', 'Animation', 'Sci-Fi',
+              'Sci-Fi', 'Thriller', 'Action', 'Crime', 'Drama'],
+    'Release Year': [2008, 2010, 1997, 1995, 1999, 2014, 2019, 2000, 1994, 1994],
+    'IMDb Rating': [9.0, 8.8, 7.9, 8.3, 8.7, 8.6, 8.6, 8.5, 8.9, 8.8]
+}
+
+# Create DataFrame
+df = pd.DataFrame(movies_data)
 
 # ================================
-# STEP 2: Review and Analyze Data
+# STEP 2: Add a New Column
+# ================================
+df['Box Office Earnings ($M)'] = [1004.6, 829.9, 2187.5, 373.6, 463.5, 677.5, 263.1, 460.5, 213.9, 678.2]
+
+# ================================
+# STEP 3: Perform Required Operations
 # ================================
 print("===== FIRST 5 ROWS =====")
 print(df.head())
@@ -26,7 +40,7 @@ print("\n===== SORTED BY IMDb RATING (DESCENDING) =====")
 print(df.sort_values(by='IMDb Rating', ascending=False))
 
 # ================================
-# STEP 3: Visualizations
+# STEP 4: Visualizations
 # ================================
 
 # 1. Bar Chart – Box Office Earnings by Movie
@@ -73,8 +87,8 @@ plt.savefig('linegraph.png')
 plt.close()
 
 # ================================
-# STEP 4: Export DataFrame to CSV
+# STEP 5: Export the DataFrame to CSV
 # ================================
-df.to_csv('movies_dataset_updated.csv', index=False)
+df.to_csv('movies_dataset.csv', index=False)
 
-print("\n✅ Analysis complete. Charts and updated CSV have been saved successfully.")
+print("\n Movie dataset created, analyzed, visualized, and exported successfully.")
